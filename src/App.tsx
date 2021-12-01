@@ -2,13 +2,13 @@ import React, { useState, useReducer } from 'react';
 import './App.css';
 import { Todolist } from './Todolist';
 import { v1 } from 'uuid';
-import { taskReducer, RemoveTaskAC, AddTaskAC, ChangeStatusAC } from './TasksReducer'
+import { tasksReducer, RemoveTaskAC, AddTaskAC, ChangeStatusAC } from './TasksReducer'
 
 export type FilterValuesType = "all" | "active" | "completed";
 
 function App() {
     
-    let [tasks, tasksDispatch] = useReducer(taskReducer,
+    let [tasks, tasksDispatch] = useReducer(tasksReducer, 
         [{ id: v1(), title: "HTML&CSS", isDone: true },
         { id: v1(), title: "JS", isDone: true },
         { id: v1(), title: "ReactJS", isDone: false },
@@ -37,8 +37,6 @@ function App() {
         tasksDispatch(ChangeStatusAC(CurrentId, value));
     }
 
-
-
     let tasksForTodolist = tasks;
 
     if (filter === "active") {
@@ -62,7 +60,6 @@ function App() {
                 addTask={addTask}
                 changeStatus={changeStatus}
                 filter={filter}
-
             />
         </div>
     );
